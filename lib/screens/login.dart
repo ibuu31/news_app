@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/screens/home.dart';
 import 'package:news_app/screens/registration.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,6 +29,14 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Text(
+                textAlign: TextAlign.center,
+                'LOGIN',
+                style: GoogleFonts.creteRound(
+                  color: Colors.lightBlueAccent,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                )),
             const SizedBox(
               height: 48.0,
             ),
@@ -77,6 +86,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ));
                 } catch (e) {
                   print('catch is running');
+                  var snackBar = SnackBar(
+                      content: Text(
+                          'There was a problem with your email or password. Please check your details and try again.'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   print(e.toString());
                 }
               },
@@ -92,7 +105,10 @@ class _LoginScreenState extends State<LoginScreen> {
               style: const ButtonStyle(
                   foregroundColor:
                       MaterialStatePropertyAll(Colors.lightBlueAccent)),
-              child: const Text('Not having account, Signup?'),
+              child: const Text(
+                'Not having account, Signup?',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             )
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/components/rounded_button.dart';
 import 'package:news_app/screens/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,6 +28,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Text(
+                textAlign: TextAlign.center,
+                'Create Account',
+                style: GoogleFonts.creteRound(
+                  color: Colors.blueAccent,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                )),
             const SizedBox(
               height: 48.0,
             ),
@@ -37,7 +46,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 email = value;
               },
               decoration:
-              kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
+                  kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
             ),
             const SizedBox(
               height: 8.0,
@@ -60,12 +69,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               onPressed: () async {
                 try {
                   UserCredential userCredential =
-                  await _auth.createUserWithEmailAndPassword(
-                      email: email, password: password);
+                      await _auth.createUserWithEmailAndPassword(
+                          email: email, password: password);
                   User? user = userCredential.user;
                   print('Signup: ${user!.uid}');
                   SharedPreferences pref =
-                  await SharedPreferences.getInstance();
+                      await SharedPreferences.getInstance();
                   pref.setString("email", email);
                   Navigator.push(
                       context,
@@ -74,6 +83,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ));
                 } catch (e) {
                   print(e);
+                  var snackBar = const SnackBar(
+                      content: Text(
+                          'There was a problem with your email or password. Please check your details and try again.'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               },
             ),

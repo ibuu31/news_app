@@ -17,23 +17,17 @@ void main() async {
 }
 
 ///Todo remove MyApp
-///Todo Google and Facebook
 ///Todo Navigator issue
-///Todo UI of Sign In and Up
 ///Todo Logout button
-///Todo Header on home page should be News App, if any source selected then it should be the source name
-///Todo Email and Password variable in registration page
 ///Todo Add comments wherever necessary
-///Todo
-///Todo
-///Todo
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }
